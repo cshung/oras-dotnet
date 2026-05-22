@@ -39,6 +39,12 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Run unit tests
         run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover ./tests/OrasProject.Oras.Tests
+      - name: Verify AOT compatibility
+        run: dotnet publish src/OrasProject.Oras/OrasProject.Oras.csproj -c Release
+      - name: Publish and run AOT test app
+        run: |
+          dotnet publish tests/OrasProject.Oras.AotTest/OrasProject.Oras.AotTest.csproj -c Release -r linux-x64
+          ./tests/OrasProject.Oras.AotTest/bin/Release/net8.0/linux-x64/publish/OrasProject.Oras.AotTest
       - name: Upload coverage to codecov.io
         uses: codecov/codecov-action@v6
         env:

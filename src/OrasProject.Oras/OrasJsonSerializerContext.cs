@@ -22,6 +22,8 @@ namespace OrasProject.Oras;
 
 [JsonSerializable(typeof(Manifest))]
 [JsonSerializable(typeof(Index))]
+[JsonSerializable(typeof(Descriptor))]
+[JsonSerializable(typeof(Platform))]
 [JsonSerializable(typeof(RepositoryList))]
 [JsonSerializable(typeof(TagList))]
 [JsonSerializable(typeof(ErrorResponse))]
